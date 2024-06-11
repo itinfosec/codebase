@@ -1,0 +1,20 @@
+---
+services:
+  freetube:
+    image: linuxserver/freetube:latest
+    container_name: freetube
+    security_opt:
+      - seccomp:unconfined #optional
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Etc/GMT
+    volumes:
+      - config:/config
+    ports:
+      - 3710:3000
+      - 3711:3001
+    shm_size: "1gb"
+    restart: unless-stopped
+volumes:
+  config:

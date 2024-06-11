@@ -1,0 +1,24 @@
+---
+services:
+  speedtest-tracker:
+    image: lscr.io/linuxserver/speedtest-tracker:latest
+    container_name: speedtest-tracker
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - DB_CONNECTION=mysql
+#      - APP_KEY= #optional
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_DATABASE=${DB_DATABASE}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+
+    volumes:
+      - speedtest:/config
+    ports:
+      - 8480:80
+    restart: unless-stopped
+volumes:
+  speedtest:

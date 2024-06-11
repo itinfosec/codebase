@@ -1,0 +1,47 @@
+version: '3.9'
+
+# networks
+# create a network 'guacamole_net' in mode 'bridged'
+networks:
+  guacamole_net:
+    driver: bridge
+  haproxy_net:
+    external: true
+
+# services
+services:
+  # guacd
+  guacd:
+    container_name: guacamole_backend
+    image: guacamole/guacd:1.5.3
+    networks:
+      guacamole_net:
+    restart: always
+    volumes:
+    - drive:/drive:rw
+    - record:/var/lib/guacamole/recordings:rw
+    
+  # guacamole
+  guacamole:
+    container_name: guacamole_frontend
+    depends_on:
+    - guacd
+    environment:
+      GUACD_HOSTNAME: guacd
+      MYSQL_DATABASE: guacamole
+      MYSQL_HOSTNAME: 192.168.0.253
+      MYSQL_PASSWORD: '${MYSQL_PASSWORD}'
+      MYSQL_USER: '${MYSQL_USER}'
+    image: guacamole/guacamole:1.5.3
+    links:
+    - guacd
+    networks:
+      - guacamole_net
+      - haproxy_net
+    restart: always
+    volumes:
+    - drive:/drive:rw
+    - record:/var/lib/guacamole/recordings
+volumes:
+  drive:
+  record:

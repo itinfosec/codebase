@@ -1,0 +1,19 @@
+---
+version: "2"
+services:
+  phpmyadmin:
+    image: linuxserver/phpmyadmin:latest
+    container_name: phpmyadmin
+    restart: unless-stopped
+    environment:
+      - TZ=Europe/London # Specify a timezone to use
+      - PUID=1000 # User ID to run as
+      - PMA_ARBITRARY=0 # Set to 1 to allow you to connect to any server. Setting to 0 will only allow you to connect to specified hosts
+      - PMA_ABSOLUTE_URI=https://phpmyadmin.sawyerlab.co.uk # Set the URL you will use to access the web UI
+      - PGID=1000 # Group ID to run as
+      - PMA_HOST=192.168.0.253
+      - PMA_PORT=32768
+    volumes:
+      - /var/lib/docker/volumes/phpmyadmin/_data:/config # Contains all relevant configuration files.
+    ports:
+      - 8310:80/tcp # Web UI

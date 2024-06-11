@@ -1,0 +1,18 @@
+version: '3.8'
+services:
+  app:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy
+    restart: unless-stopped
+    ports:
+      # These ports are in format <host-port>:<container-port>
+      - '80:80' # Public HTTP Port
+      - '443:443' # Public HTTPS Port
+      - '81:81' # Admin Web Port
+      # Add any other Stream port you want to expose
+      # - '21:21' # FTP
+    volumes:
+      - /var/lib/docker/volumes/nginxproxy/data:/data
+      - /var/lib/docker/volumes/nginxproxy/letsencrypt:/etc/letsencrypt
+    labels:
+      - "com.centurylinklabs.watchtower.enable=false"

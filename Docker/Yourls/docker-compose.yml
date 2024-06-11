@@ -1,0 +1,18 @@
+version: '3.1'
+
+services:
+    yourls:
+      image: yourls
+      container_name: yourls
+      restart: unless-stopped
+      ports:
+        - 8591:80
+      env_file:
+        - yourls.env
+      environment:
+        YOURLS_SITE: ${YOURLS_SITE}
+        YOURLS_USER: ${YOURLS_USER}
+        YOURLS_PASS: ${YOURLS_PASS}
+        YOURLS_DB_HOST: ${YOURLS_DB_HOST}
+        YOURLS_DB_USER: ${YOURLS_DB_USER}
+        YOURLS_DB_PASS: ${YOURLS_DB_PASS}

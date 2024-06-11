@@ -1,0 +1,18 @@
+---
+version: "2.1"
+services:
+  changedetection:
+    image: lscr.io/linuxserver/changedetection.io:latest
+    container_name: changedetection
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - BASE_URL=https://detect.sawyerlab.co.uk
+    volumes:
+      - changedetection:/config
+    ports:
+      - 5064:5000
+    restart: unless-stopped
+volumes:
+  changedetection:

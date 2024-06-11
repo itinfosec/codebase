@@ -1,0 +1,32 @@
+version: "2.4"
+
+volumes:
+  data:
+  extensions:
+
+services:
+
+  freshrss:
+    image: freshrss/freshrss:latest
+    container_name: freshrss
+    hostname: freshrss
+    restart: unless-stopped
+    logging:
+      options:
+        max-size: 10m
+    ports:
+      - 8018:80
+    volumes:
+      - data:/var/www/FreshRSS/data
+      - extensions:/var/www/FreshRSS/extensions
+    environment:
+      TZ: Europe/London
+      CRON_MIN: '3,33'
+      TRUSTED_PROXY: 172.16.0.1/12 192.168.0.1/16
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      ADMIN_API_PASSWORD: ${ADMIN_API_PASSWORD}
+      DB_HOST: $[DB_HOST]
+      DB_BASE: ${DB_BASE}
+      DB_PASSWORD: ${DB_PASSWORD}
+      DB_USER: ${DB_USER}
