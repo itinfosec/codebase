@@ -9,7 +9,7 @@ services:
       - TZ=Europe/London
     volumes:
       - /path/to/data:/config
-     # - /path/to/tvseries:/tv #optional
+      - /media/tv:/tv #optional
      # - /path/to/downloadclient-downloads:/downloads #optional
     ports:
       - 8947:8989
