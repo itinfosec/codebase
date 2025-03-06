@@ -9,8 +9,12 @@ services:
       - TZ=Etc/UTC
       - MAX_UPLOAD=5000
     volumes:
-      - /path/to/projectsend/config:/config
-      - /path/to/data:/data
+      - projectsend_config:/config
+      - projectsend_data:/data
     ports:
       - 80:80
     restart: unless-stopped
+
+volumes:
+  projectsend_config:
+  projectsend_data:
