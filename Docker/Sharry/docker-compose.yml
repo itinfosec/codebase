@@ -1,0 +1,31 @@
+version: '3.7'
+services:
+  restserver:
+    image: eikek0/sharry:latest
+    container_name: sharry
+    command: /opt/sharry.conf
+    ports:
+      - "9090:9090"
+    volumes:
+      - ${PWD}/sharry.conf:/opt/sharry.conf
+    depends_on:
+      db:
+        condition: service_healthy
+  db:
+    image: postgres:17.4
+    container_name: postgres_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=sharry
+      - POSTGRES_PASSWORD=
+      - POSTGRES_DB=sharry
+      - PGUSER=sharry
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready", "-d", "sharry"]
+      interval: 15s
+      timeout: 60s
+      retries: 5
+      start_period: 15s
+volumes:
+  postgres_data:

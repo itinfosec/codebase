@@ -12,7 +12,9 @@ services:
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
     volumes:
-      - /var/lib/docker/volumes/nginxproxy/data:/data
-      - /var/lib/docker/volumes/nginxproxy/letsencrypt:/etc/letsencrypt
+      - nginxproxy:/data
+      - nginxproxy:/etc/letsencrypt
     labels:
       - "com.centurylinklabs.watchtower.enable=false"
+volumes:
+  nginxproxy:

@@ -10,11 +10,11 @@ services:
       - PGID=1000
       - TZ=Etc/GMT
     volumes:
-      - config:/config
+      - freetube:/config
     ports:
       - 3710:3000
       - 3711:3001
     shm_size: "1gb"
     restart: unless-stopped
 volumes:
-  config:
+  freetube:
