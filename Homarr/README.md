@@ -1,0 +1,1 @@
+https://homarr.dev/docs/getting-started/installation/docker
