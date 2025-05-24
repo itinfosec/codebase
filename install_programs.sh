@@ -1,9 +1,5 @@
 #!/bin/bash
 
-#Make the script executable: chmod +x install_programs.sh
-#Run the script: ./install_programs.sh
-
-
 # List of programs to install
 programs=(
   curl
