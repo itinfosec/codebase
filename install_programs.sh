@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Make the script executable: chmod +x install_programs.sh
+#Run the script: ./install_programs.sh
+
+
 # List of programs to install
 programs=(
   curl
@@ -8,9 +12,17 @@ programs=(
   htop
   build-essential
   net-tools
-  dog
   wormhole
+  moreutils
+  unp
+  asciinema
 
+
+)
+
+# List of Snap packages (name and optional flags)
+snap_programs=(
+  "dog"
 )
 
 echo "Updating package list..."
@@ -25,5 +37,10 @@ for program in "${programs[@]}"; do
     sudo apt install -y "$program"
   fi
 done
+
+# install speedtest cli with curl
+echo "Installing speedtest-cli with curl"
+curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+sudo apt-get install speedtest
 
 echo "All done."
