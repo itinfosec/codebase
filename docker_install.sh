@@ -1,5 +1,9 @@
 #!/bin/bash
 
+#Make the script executable: chmod +x install_programs.sh
+#Run the script: ./install_programs.sh
+
+
 # Exit immediately if a command exits with a non-zero status
 set -e
 
