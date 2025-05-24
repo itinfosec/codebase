@@ -16,6 +16,8 @@ programs=(
   moreutils
   unp
   asciinema
+  samba
+  
 
 
 )
