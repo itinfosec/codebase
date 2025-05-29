@@ -13,6 +13,9 @@ programs=(
   unp
   asciinema
   samba
+  tmux
+  screen
+  
   
 
 
