@@ -1,0 +1,28 @@
+services:
+  n8n:
+    image: n8nio/n8n:latest
+    restart: always
+    ports:
+      - "5678:5678"
+    env_file:
+      - .env
+    volumes:
+      - ./data:/home/node/.n8n
+      - ./files:/files
+    depends_on:
+      - postgres
+    # labels:
+      # - "traefik.enable=true"
+      # - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.rule=Host(`${TRAEFIK_DOMAIN}`)"
+      # - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.entrypoints=websecure"
+      # - "traefik.http.routers.${TRAEFIK_ROUTER_NAME}.tls.certresolver=${TRAEFIK_CERT_RESOLVER}"
+      # - "traefik.http.services.${TRAEFIK_ROUTER_NAME}.loadbalancer.server.port=5678"
+
+  # If you're running your own external PostgreSQL instance, you can comment out this service
+  postgres:
+    image: postgres:15
+    restart: always
+    env_file:
+      - .env
+    volumes:
+      - ./postgres-data:/var/lib/postgresql/data
