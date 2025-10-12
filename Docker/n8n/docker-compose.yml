@@ -4,8 +4,8 @@ services:
     restart: always
     ports:
       - "5678:5678"
-    env_file:
-      - .env
+   # env_file:
+   #   - .env
     volumes:
       - ./data:/home/node/.n8n
       - ./files:/files
@@ -22,7 +22,7 @@ services:
   postgres:
     image: postgres:15
     restart: always
-    env_file:
-      - .env
+   # env_file:
+   #   - .env
     volumes:
       - ./postgres-data:/var/lib/postgresql/data
