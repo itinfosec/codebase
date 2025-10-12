@@ -1,16 +1,16 @@
-# USER GUIDE!!! Make the script executable by chmod +x ~/dotfiles/bashrc-setup.sh AND THEN run with ./bashrc-setup.sh
+# USER GUIDE!!! Make the script executable by chmod +x ~/codebase/bashrc-setup.sh AND THEN run with ./bashrc-setup.sh
 
 #!/bin/bash
-# Fully automated dotfiles setup with auto-clone and OS detection
+# Fully automated .bashrc setup: full repo in ~/codebase, symlink .bashrc
 
 set -e  # Exit on error
 
 # --- Configuration -----------------------------------------------------------
-GIT_REPO="git@github.com:itinfosec/codebase.git"  # ⚠️ Change this to your repo
-DOTFILES_DIR="$HOME/dotfiles"
-DOTFILES=( .bashrc )  # Add more files as needed
+GIT_REPO="git@github.com:itinfosec/codebase.git"
+DOTFILES_DIR="$HOME/codebase"
+DOTFILES=( .bashrc )  # Only create symlinks for these files
 
-echo "🔧 Starting dotfiles setup..."
+echo "🔧 Starting .bashrc setup..."
 
 # --- Detect OS ---------------------------------------------------------------
 if [ -f /etc/os-release ]; then
@@ -50,26 +50,27 @@ install_packages() {
             ;;
     esac
 }
-
 install_packages
 
-# --- Clone or update dotfiles repository ------------------------------------
+# --- Clone or update codebase repo ------------------------------------------
 if [ -d "$DOTFILES_DIR/.git" ]; then
-    echo "🔁 Updating existing dotfiles repo..."
+    echo "🔁 Updating existing codebase repo..."
     cd "$DOTFILES_DIR"
     git pull --rebase
 else
-    echo "📥 Cloning dotfiles repo..."
-    rm -rf "$DOTFILES_DIR"
+    echo "📥 Cloning codebase repo into $DOTFILES_DIR..."
     git clone "$GIT_REPO" "$DOTFILES_DIR"
-    cd "$DOTFILES_DIR"
 fi
 
-# --- Symlink managed dotfiles ------------------------------------------------
-echo "🔗 Setting up symlinks..."
+# --- Create symlinks in home directory --------------------------------------
 for file in "${DOTFILES[@]}"; do
     SRC="$DOTFILES_DIR/$file"
     DEST="$HOME/$file"
+
+    if [ ! -f "$SRC" ]; then
+        echo "⚠️  $file not found in repo!"
+        continue
+    fi
 
     if [ -e "$DEST" ] && [ ! -L "$DEST" ]; then
         echo "📦 Backing up existing $file to $file.backup"
@@ -85,6 +86,6 @@ for file in "${DOTFILES[@]}"; do
 done
 
 # --- Reload bash -------------------------------------------------------------
-echo "✅ Setup complete! Reloading Bash..."
-source ~/.bashrc
-echo "🎉 All done — your dotfiles are now synced!"
+echo "✅ .bashrc is set up! Reloading Bash..."
+source "$HOME/.bashrc"
+echo "🎉 Done! Your .bashrc is now synced."
