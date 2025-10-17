@@ -40,8 +40,9 @@ for program in "${programs[@]}"; do
 done
 
 # install speedtest cli with curl
-echo "Installing speedtest-cli with curl"
-curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
-sudo apt-get install speedtest
+#============== THIS HAS BEEN REMOVED DUE TO THE REPO BEING UNREACHABLE==============
+#echo "Installing speedtest-cli with curl"
+#curl -s https://packagecloud.io/install/repositories/ookla/speedtest-cli/script.deb.sh | sudo bash
+#sudo apt-get install speedtest
 
 echo "All done."
