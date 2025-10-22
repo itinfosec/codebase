@@ -1,5 +1,5 @@
 #!/bin/bash
-
+## To use this script run chmod +x /path/to/docker_install.sh followed by ./docker_install.sh ##
 set -e
 
 echo "🚀 Starting Docker installation..."

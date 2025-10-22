@@ -1,5 +1,5 @@
 #!/bin/bash
-
+## To use this script run chmod +x /path/to/install_programs.sh followed by ./install_programs.sh ##
 # List of programs to install
 programs=(
   curl
