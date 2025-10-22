@@ -5,6 +5,7 @@
 # This script backs up the existing ~/.bashrc and replaces it with the version
 # stored in ~/codebase/.bashrc. It also automatically pulls the latest version
 # from your GitHub repository.
+# To use this script run chmod +x /path/to/update-bashrc.sh followed by ./update-bashrc.sh
 # =============================================================================
 
 # Exit on error
