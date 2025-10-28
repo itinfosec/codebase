@@ -4,7 +4,7 @@
 # Run this script as Administrator.
 # It installs all packages listed below using Chocolatey.
 
-# In POWERSHELL Run: 
+# In POWERSHELL Run: (ON SEPERATE LINES!)
 # Set-ExecutionPolicy Bypass -Scope Process -Force
 # & "C:\Users\Admin\Desktop\choco-prog-install.ps1"
 
