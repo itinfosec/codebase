@@ -30,7 +30,7 @@ $packages = @(
 "icloud","cryptomator","github-desktop","sublimetext3","sublimetext4","putty.install",
 "vim","nano","rainmeter","obs","handbrake","calibre","chirp","hexchat","ledger-live",
 "renamemytvseries2","rpi-imager","vnc-viewer","vnc-connect","windirstat","crystaldiskinfo",
-"wamp-server","exifdataview"
+"wamp-server","exifdataview","mp3tag"
 )
 
 # Check if installed
