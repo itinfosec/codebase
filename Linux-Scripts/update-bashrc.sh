@@ -13,7 +13,7 @@ set -e
 
 # Paths
 BACKUP_DIR="$HOME/bashrc_backups"
-SOURCE_BASHRC="$HOME/codebase/.bashrc"
+SOURCE_BASHRC="$HOME/codebase/Linux-Scripts/.bashrc"
 TARGET_BASHRC="$HOME/.bashrc"
 
 # Timestamp for backup
