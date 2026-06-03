@@ -7,9 +7,11 @@ services:
       - PGID=1000
       - TZ=Etc/UTC
     volumes:
-      - /var/lib/docker/volumes/radarr/:/config
-      - /media/movies:/movies #optional
+      - radarr/:/config
+   #   - /media/movies:/movies #optional
      # - /path/to/downloadclient-downloads:/downloads #optional
     ports:
       - 7878:7878
     restart: unless-stopped
+volumes:
+  radarr:
